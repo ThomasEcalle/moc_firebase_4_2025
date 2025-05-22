@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:moc_firebase_4_2025/firestore_lesson/firestore_screen.dart';
 
 import 'firebase_options.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: const HomeScreen(),
+      home: const FirestoreScreen(),
     );
   }
 }
