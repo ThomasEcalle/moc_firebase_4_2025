@@ -16,14 +16,10 @@ class AuthLessonScreen extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           final user = snapshot.data;
-          if(user == null) return LoginForm();
+          if (user == null) return LoginForm();
           return AuthenticatedScreen();
         },
       ),
     );
-  }
-
-  void _signInWithEmailAndPassword(BuildContext context) {
-    FirebaseAuth.instance.signInWithEmailAndPassword(email: 'toto', password: 'toto');
   }
 }
