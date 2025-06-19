@@ -29,7 +29,10 @@ class _LoginFormState extends State<LoginForm> {
           children: [
             Text(
               'Login',
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .bodyLarge,
             ),
             const SizedBox(height: 20),
             TextField(
@@ -53,6 +56,11 @@ class _LoginFormState extends State<LoginForm> {
             ElevatedButton(
               onPressed: () => _signIn(context),
               child: Text('SignIn'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => _login(context),
+              child: Text('Login'),
             )
           ],
         ),
@@ -67,6 +75,23 @@ class _LoginFormState extends State<LoginForm> {
 
     try {
       final userCredentials = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      print('Generated id: ${userCredentials.user?.uid}');
+    } catch (error) {
+      print('Error during signIn: $error');
+    }
+  }
+
+  void _login(BuildContext context) async {
+    final email = _emailController.text;
+    final password = _passwordController.text;
+    print('Email: $email & password: $password');
+
+    try {
+      final userCredentials = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
